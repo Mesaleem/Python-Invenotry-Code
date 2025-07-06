@@ -1,9 +1,10 @@
+import os
+import uvicorn
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional
-import uvicorn
 
 # Create FastAPI instance
 app = FastAPI(
@@ -31,6 +32,7 @@ async def read_root():
 async def health_check():
     return {"status": "healthy", "service": "FastAPI"}
 
+# Run the application (corrected)
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 10000))  # Use Render's PORT or default to 10000 locally
     uvicorn.run(app, host="0.0.0.0", port=port)
